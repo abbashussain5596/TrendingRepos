@@ -1,14 +1,15 @@
 package com.tech.abbas.trendingrepos
 
-import android.content.Context
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.activity.compose.setContent
-import androidx.compose.ui.platform.ComposeView
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.tech.abbas.trendingrepos.presentation.ApplicationTheme
+import com.tech.abbas.trendingrepos.presentation.ReposApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +18,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
-            ReposApp()
+            ApplicationTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    ReposApp()
+                }
+            }
         }
     }
 
