@@ -11,15 +11,15 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.tech.abbas.trendingrepos.RepoListScreen.MENU_ICON
 import com.tech.abbas.trendingrepos.RepoListScreen.TOOLBAR_TAG
+import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 
 @Composable
 fun RepoListScreen(
+    viewModel: RepoListViewModel = hiltViewModel()
 ) {
     TopAppBar(
         backgroundColor = Color.White,
