@@ -26,11 +26,14 @@ class RepoListScreenKtTest {
     fun whenScreenStartsToolbarCorrectlyVisible() {
 
         composeTestRule.onNodeWithTag(TOOLBAR_TAG).assertIsDisplayed()
+        composeTestRule.onNodeWithTag(MENU_ICON).assertIsDisplayed()
+
 
     }
 
     companion object RepoListScreen {
         const val TOOLBAR_TAG = "toolbar"
+        const val MENU_ICON = "menuIcon"
 
     }
 }
