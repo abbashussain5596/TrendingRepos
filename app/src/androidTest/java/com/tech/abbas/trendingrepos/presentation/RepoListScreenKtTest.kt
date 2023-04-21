@@ -4,8 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import com.tech.abbas.trendingrepos.RepoListScreen
+import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
 import org.junit.Before
@@ -25,8 +24,7 @@ class RepoListScreenKtTest {
     @Mock
     lateinit var repoScreenViewModel: RepoListViewModel
 
-    @Before
-    fun repoListScreenTest() {
+    fun setup(){
         composeTestRule.setContent {
             RepoListScreen(repoScreenViewModel)
         }
@@ -43,7 +41,18 @@ class RepoListScreenKtTest {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Idle))
         )
+        setup()
+        composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
 
+    }
+
+    @Test
+    fun whenScreenIsOnErrorState(){
+        `when`(repoScreenViewModel.uiState).thenReturn(
+            (mutableStateOf(ReposUIState.Error))
+        )
+        setup()
+        composeTestRule.onNodeWithTag(NETWORK_ERROR).assertExists()
         composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
 
     }
@@ -52,6 +61,7 @@ class RepoListScreenKtTest {
         const val TOOLBAR_TAG = "toolbar"
         const val MENU_ICON = "menuIcon"
         const val REPO_LIST = "repoList"
+        const val NETWORK_ERROR = "networkError"
 
     }
 }

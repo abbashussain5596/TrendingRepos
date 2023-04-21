@@ -1,4 +1,4 @@
-package com.tech.abbas.trendingrepos.presentation
+package com.tech.abbas.trendingrepos.presentation.ui
 
 import androidx.compose.ui.graphics.Color
 

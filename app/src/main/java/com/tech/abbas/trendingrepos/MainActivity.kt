@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.tech.abbas.trendingrepos.presentation.ApplicationTheme
+import com.tech.abbas.trendingrepos.presentation.ui.ApplicationTheme
 import com.tech.abbas.trendingrepos.presentation.ReposApp
 import dagger.hilt.android.AndroidEntryPoint
 

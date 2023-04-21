@@ -1,7 +1,10 @@
-package com.tech.abbas.trendingrepos
+package com.tech.abbas.trendingrepos.presentation.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -12,18 +15,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.tech.abbas.trendingrepos.RepoListScreen.MENU_ICON
-import com.tech.abbas.trendingrepos.RepoListScreen.TOOLBAR_TAG
-import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
+import com.tech.abbas.trendingrepos.R
 
 @Composable
-fun RepoListScreen(
-    viewModel: RepoListViewModel = hiltViewModel()
-) {
+fun Toolbar(){
     TopAppBar(
         backgroundColor = Color.White,
-        modifier = Modifier.testTag(TOOLBAR_TAG)
+        modifier = Modifier.testTag(RepoListScreen.TOOLBAR_TAG)
     ) {
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -39,14 +37,8 @@ fun RepoListScreen(
             Image(
                 painter = painterResource(id = R.drawable.more_vert_black_24dp),
                 contentDescription = "menu",
-                Modifier.testTag(MENU_ICON)
+                Modifier.testTag(RepoListScreen.MENU_ICON)
             )
         }
     }
-}
-
-object RepoListScreen {
-    const val TOOLBAR_TAG = "toolbar"
-    const val MENU_ICON = "menuIcon"
-
 }

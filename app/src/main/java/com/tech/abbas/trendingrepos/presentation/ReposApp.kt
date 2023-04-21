@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.tech.abbas.trendingrepos.RepoListScreen
 import com.tech.abbas.trendingrepos.presentation.ScreenNavigation.REPOS_LIST_SCREEN
+import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen
 
 @Composable
 fun ReposApp() {
