@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen.NETWORK_ERROR
+import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen.REPO_LIST
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
 
@@ -20,12 +21,14 @@ fun RepoListScreen(
     Column() {
         Toolbar()
         when(uiState){
-            is ReposUIState.Error ->{
+            is ReposUIState.Error -> {
                 ErrorScreen(Modifier.testTag(NETWORK_ERROR))
             }
             ReposUIState.Idle -> TODO()
             ReposUIState.Loading -> TODO()
-            is ReposUIState.Success -> TODO()
+            is ReposUIState.Success -> {
+                RepoSuccessScreen(Modifier.testTag(REPO_LIST))
+            }
         }
     }
 }
@@ -33,6 +36,7 @@ fun RepoListScreen(
 object RepoListScreen {
     const val TOOLBAR_TAG = "toolbar"
     const val MENU_ICON = "menuIcon"
+    const val REPO_LIST = "repoList"
     const val NETWORK_ERROR = "networkError"
 
 }

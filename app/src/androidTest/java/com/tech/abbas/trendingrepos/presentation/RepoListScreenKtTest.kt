@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
 import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
@@ -23,6 +24,8 @@ class RepoListScreenKtTest {
 
     @Mock
     lateinit var repoScreenViewModel: RepoListViewModel
+
+    private val githubRepos = GithubReposProvider.getGithubRepoList()
 
     fun setup(){
         composeTestRule.setContent {
@@ -56,6 +59,18 @@ class RepoListScreenKtTest {
         composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
 
     }
+
+    @Test
+    fun whenScreenIsOnSuccessState(){
+        `when`(repoScreenViewModel.uiState).thenReturn(
+            (mutableStateOf(ReposUIState.Success(githubRepos)))
+        )
+        setup()
+        composeTestRule.onNodeWithTag(NETWORK_ERROR).assertDoesNotExist()
+        composeTestRule.onNodeWithTag(REPO_LIST).assertExists()
+
+    }
+
 
     companion object RepoListScreen {
         const val TOOLBAR_TAG = "toolbar"

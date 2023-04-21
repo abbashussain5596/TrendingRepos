@@ -21,7 +21,7 @@ class RepoListViewModel @Inject constructor(
 
 sealed class ReposUIState {
     object Idle : ReposUIState()
-    data class Success(val data: GithubRepo) : ReposUIState()
+    data class Success(val data: List<GithubRepo>) : ReposUIState()
     object Error : ReposUIState()
     object Loading : ReposUIState()
 }
