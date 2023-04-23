@@ -71,11 +71,24 @@ class RepoListScreenKtTest {
 
     }
 
+    @Test
+    fun whenScreenIsOnLoadingState(){
+        `when`(repoScreenViewModel.uiState).thenReturn(
+            (mutableStateOf(ReposUIState.Loading))
+        )
+        setup()
+        composeTestRule.onNodeWithTag(NETWORK_ERROR).assertDoesNotExist()
+        composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
+        composeTestRule.onNodeWithTag(LOADING).assertExists()
+
+
+    }
 
     companion object RepoListScreen {
         const val TOOLBAR_TAG = "toolbar"
         const val MENU_ICON = "menuIcon"
         const val REPO_LIST = "repoList"
+        const val LOADING = "loading"
         const val NETWORK_ERROR = "networkError"
 
     }
