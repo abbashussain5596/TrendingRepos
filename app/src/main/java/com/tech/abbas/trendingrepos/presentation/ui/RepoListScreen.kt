@@ -25,7 +25,7 @@ fun RepoListScreen(
             is ReposUIState.Error -> {
                 ErrorScreen(Modifier.testTag(NETWORK_ERROR))
             }
-            ReposUIState.Idle -> TODO()
+            ReposUIState.Idle ->{}
             ReposUIState.Loading -> {
                 LoadingScreen(Modifier.testTag(LOADING))
             }

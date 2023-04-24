@@ -1,14 +1,12 @@
-package com.tech.abbas.trendingrepos.presentation
+package com.tech.abbas.trendingrepos.presentation.ui
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
-import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreen
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,6 +33,10 @@ class RepoListScreenKtTest {
 
     @Test
     fun whenScreenStartsToolbarCorrectlyVisible() {
+        `when`(repoScreenViewModel.uiState).thenReturn(
+            (mutableStateOf(ReposUIState.Idle))
+        )
+        setup()
         composeTestRule.onNodeWithTag(TOOLBAR_TAG).assertIsDisplayed()
         composeTestRule.onNodeWithTag(MENU_ICON).assertIsDisplayed()
     }
@@ -90,6 +92,10 @@ class RepoListScreenKtTest {
         const val REPO_LIST = "repoList"
         const val LOADING = "loading"
         const val NETWORK_ERROR = "networkError"
+        const val ERROR_ANIM = "errorAnim"
+        const val ERROR_TEXT = "errorText"
+        const val ERROR_DESC = "errorDesc"
+        const val RETRY_BUTTON = "retryButton"
 
     }
 }

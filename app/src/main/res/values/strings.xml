@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Trending Repos</string>
     <string name="toolbar_text">Trending</string>
+    <string name="retry">Retry</string>
+    <string name="error_text">Something went wrong</string>
+    <string name="error_desc">An alien is probably blocking your signal.</string>
 </resources>
