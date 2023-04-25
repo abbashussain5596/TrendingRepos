@@ -25,7 +25,10 @@ class RepoListViewModel @Inject constructor(
 
     fun onRepoItemClicked(cardId: Int) {
         _expandedCardIdsList.value = _expandedCardIdsList.value.toMutableList().also { list ->
-            if (list.contains(cardId)) list.remove(cardId) else list.add(cardId)
+            if (!list.contains(cardId)) {
+                list.clear()
+                list.add(cardId)
+            }
         }
     }
 
