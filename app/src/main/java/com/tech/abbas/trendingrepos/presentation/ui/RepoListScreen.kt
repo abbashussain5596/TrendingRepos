@@ -21,16 +21,19 @@ fun RepoListScreen(
 
     Column {
         Toolbar()
-        when(uiState){
+        when (uiState) {
             is ReposUIState.Error -> {
                 ErrorScreen(Modifier.testTag(NETWORK_ERROR))
             }
-            ReposUIState.Idle ->{}
+            ReposUIState.Idle -> {}
             ReposUIState.Loading -> {
                 LoadingScreen(Modifier.testTag(LOADING))
             }
             is ReposUIState.Success -> {
-                RepoSuccessScreen(Modifier.testTag(REPO_LIST))
+                RepoSuccessScreen(
+                    Modifier.testTag(REPO_LIST),
+                    (uiState as ReposUIState.Success).data
+                )
             }
         }
     }
