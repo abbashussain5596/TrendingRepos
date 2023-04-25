@@ -118,14 +118,16 @@ fun RepoExpandedView(repo: GithubRepo, visible: Boolean, initialVisibility: Bool
 @Composable
 fun ExpandedView(repo: GithubRepo) {
 
-    Column {
+    Column(Modifier.padding(top = 8.dp)) {
         RepoTwinUI(repo)
         Text(
             text = repo.description,
             fontSize = 14.sp,
-            modifier = Modifier.testTag(REPO_DESC)
+            modifier = Modifier
+                .testTag(REPO_DESC)
+                .padding(start = 82.dp)
         )
-        Row {
+        Row (Modifier.padding(start = 72.dp)){
             DrawableLeftText(
                 modifier = Modifier.semantics { testTag = REPO_LANG },
                 imageVector = Icons.Filled.Info,
@@ -174,7 +176,7 @@ fun RepoCollapsedView(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier
+        modifier.padding(top = 8.dp)
     ) {
         RepoTwinUI(repo)
         Divider(
@@ -182,7 +184,7 @@ fun RepoCollapsedView(
             thickness = 1.dp,
             modifier = Modifier
                 .testTag(DIVIDER_LINE)
-                .padding(start = 15.dp)
+                .padding(start = 15.dp, top = 6.dp)
         )
 
     }
@@ -191,7 +193,7 @@ fun RepoCollapsedView(
 
 @Composable
 fun RepoTwinUI(repo: GithubRepo) {
-    Row(Modifier.padding(18.dp, 10.dp)) {
+    Row(Modifier.padding(18.dp, 2.dp)) {
 
         AsyncImage(
             model = repo.avatarUrl,
@@ -199,7 +201,7 @@ fun RepoTwinUI(repo: GithubRepo) {
             modifier = Modifier
                 .padding(end = 10.dp)
                 .testTag(USER_IMAGE)
-                .size(54.dp)
+                .size(44.dp)
                 .clip(CircleShape)
                 .border(1.dp, Color.LightGray, CircleShape)
         )
@@ -208,12 +210,16 @@ fun RepoTwinUI(repo: GithubRepo) {
             Text(
                 text = repo.name,
                 fontSize = 14.sp,
-                modifier = Modifier.testTag(USER_NAME)
+                modifier = Modifier
+                    .testTag(USER_NAME)
+                    .padding(start = 8.dp, bottom = 4.dp)
             )
             Text(
                 text = repo.repoName,
                 fontSize = 16.sp,
-                modifier = Modifier.testTag(USER_REPO)
+                modifier = Modifier
+                    .testTag(USER_REPO)
+                    .padding(start = 8.dp)
             )
 
         }

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import com.tech.abbas.trendingrepos.domain.entity.GithubRepo
+import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +16,7 @@ class RepoListViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     var uiState = mutableStateOf<ReposUIState>(
-        ReposUIState.Idle
+        ReposUIState.Success(GithubReposProvider.getGithubRepoList())
     )
 
     private val _expandedCardIdsList = MutableStateFlow(listOf<Int>())
