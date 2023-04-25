@@ -7,9 +7,11 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import com.tech.abbas.trendingrepos.domain.entity.GithubRepo
 import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
 import com.tech.abbas.trendingrepos.presentation.ui.RepoListScreenKtTest.RepoListScreen.REPO_LIST
+import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -18,9 +20,12 @@ class RepoSuccessScreenKtTest{
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    @Mock
+    lateinit var repoScreenViewModel: RepoListViewModel
+
     fun setup(data : List<GithubRepo> = listOf()){
         composeTestRule.setContent {
-            RepoSuccessScreen(Modifier.testTag(REPO_LIST),data)
+            RepoSuccessScreen(Modifier.testTag(REPO_LIST),data, listOf(),repoScreenViewModel)
         }
     }
 

@@ -27,12 +27,9 @@ import com.tech.abbas.trendingrepos.presentation.ui.ErrorScreen.RETRY_BUTTON
 fun ErrorScreen(modifier: Modifier) {
 
     val errorComposition by rememberLottieComposition(
-        LottieCompositionSpec.RawRes(R.raw.error),
+        LottieCompositionSpec.RawRes(R.raw.error)
     )
-    val progress by animateLottieCompositionAsState(
-        iterations = LottieConstants.IterateForever,
-        composition = errorComposition
-    )
+
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -40,7 +37,6 @@ fun ErrorScreen(modifier: Modifier) {
 
         LottieAnimation(
             composition = errorComposition,
-            progress = progress,
             modifier = Modifier
                 .testTag(ERROR_ANIM)
                 .size(350.dp)

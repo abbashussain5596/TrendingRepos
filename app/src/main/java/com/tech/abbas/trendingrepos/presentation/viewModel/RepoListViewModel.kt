@@ -17,6 +17,17 @@ class RepoListViewModel @Inject constructor(
     var uiState = mutableStateOf<ReposUIState>(
         ReposUIState.Idle
     )
+
+    private val _expandedCardIdsList = MutableStateFlow(listOf<Int>())
+    val expandedCardIdsList: StateFlow<List<Int>> get() = _expandedCardIdsList
+
+
+    fun onRepoItemClicked(cardId: Int) {
+        _expandedCardIdsList.value = _expandedCardIdsList.value.toMutableList().also { list ->
+            if (list.contains(cardId)) list.remove(cardId) else list.add(cardId)
+        }
+    }
+
 }
 
 sealed class ReposUIState {

@@ -2,6 +2,7 @@ package com.tech.abbas.trendingrepos.presentation.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -18,6 +19,8 @@ fun RepoListScreen(
 ) {
 
     val uiState by viewModel.uiState
+    val expandedCardIds by viewModel.expandedCardIdsList.collectAsState()
+
 
     Column {
         Toolbar()
@@ -32,7 +35,9 @@ fun RepoListScreen(
             is ReposUIState.Success -> {
                 RepoSuccessScreen(
                     Modifier.testTag(REPO_LIST),
-                    (uiState as ReposUIState.Success).data
+                    (uiState as ReposUIState.Success).data,
+                    expandedCardIds,
+                    viewModel
                 )
             }
         }

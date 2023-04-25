@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -36,6 +37,9 @@ class RepoListScreenKtTest {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Idle))
         )
+        `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
+            (MutableStateFlow(listOf()))
+        )
         setup()
         composeTestRule.onNodeWithTag(TOOLBAR_TAG).assertIsDisplayed()
         composeTestRule.onNodeWithTag(MENU_ICON).assertIsDisplayed()
@@ -46,6 +50,9 @@ class RepoListScreenKtTest {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Idle))
         )
+        `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
+            (MutableStateFlow(listOf()))
+        )
         setup()
         composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
 
@@ -55,6 +62,9 @@ class RepoListScreenKtTest {
     fun whenScreenIsOnErrorState(){
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Error))
+        )
+        `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
+            (MutableStateFlow(listOf()))
         )
         setup()
         composeTestRule.onNodeWithTag(NETWORK_ERROR).assertExists()
@@ -67,6 +77,9 @@ class RepoListScreenKtTest {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Success(githubRepos)))
         )
+        `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
+            (MutableStateFlow(listOf()))
+        )
         setup()
         composeTestRule.onNodeWithTag(NETWORK_ERROR).assertDoesNotExist()
         composeTestRule.onNodeWithTag(REPO_LIST).assertExists()
@@ -77,6 +90,9 @@ class RepoListScreenKtTest {
     fun whenScreenIsOnLoadingState(){
         `when`(repoScreenViewModel.uiState).thenReturn(
             (mutableStateOf(ReposUIState.Loading))
+        )
+        `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
+            (MutableStateFlow(listOf()))
         )
         setup()
         composeTestRule.onNodeWithTag(NETWORK_ERROR).assertDoesNotExist()
