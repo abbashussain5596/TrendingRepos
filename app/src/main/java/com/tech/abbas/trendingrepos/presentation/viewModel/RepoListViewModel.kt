@@ -16,7 +16,7 @@ class RepoListViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     var uiState = mutableStateOf<ReposUIState>(
-        ReposUIState.Success(GithubReposProvider.getGithubRepoList())
+        ReposUIState.Idle
     )
 
     private val _expandedCardIdsList = MutableStateFlow(listOf<Int>())
