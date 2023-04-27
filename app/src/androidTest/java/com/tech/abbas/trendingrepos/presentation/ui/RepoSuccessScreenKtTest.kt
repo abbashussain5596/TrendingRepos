@@ -15,7 +15,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class RepoSuccessScreenKtTest{
+internal class RepoSuccessScreenKtTest{
 
     @get:Rule
     val composeTestRule = createComposeRule()

@@ -14,7 +14,7 @@ import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 import com.tech.abbas.trendingrepos.presentation.viewModel.ReposUIState
 
 @Composable
-fun RepoListScreen(
+internal fun RepoListScreen(
     viewModel: RepoListViewModel = hiltViewModel()
 ) {
 

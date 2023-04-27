@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mock
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class RepoListViewModelTest {
+internal class RepoListViewModelTest {
 
     private lateinit var repoViewModel: RepoListViewModel
 
@@ -27,7 +27,7 @@ class RepoListViewModelTest {
     lateinit var application: Application
 
     @Mock
-    private lateinit var repoUseCase: IRepoUseCase
+    lateinit var repoUseCase: IRepoUseCase
 
     @BeforeEach
     fun setupViewModel() {
