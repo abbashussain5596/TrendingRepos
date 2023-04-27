@@ -18,7 +18,7 @@ fun RepoListScreen(
     viewModel: RepoListViewModel = hiltViewModel()
 ) {
 
-    val uiState by viewModel.uiState
+    val uiState by viewModel.uiState.collectAsState()
     val expandedCardIds by viewModel.expandedCardIdsList.collectAsState()
 
 

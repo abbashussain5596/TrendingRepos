@@ -2,6 +2,7 @@ package com.tech.abbas.trendingrepos.presentation.ui
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
@@ -35,7 +36,7 @@ class RepoListScreenKtTest {
     @Test
     fun whenScreenStartsToolbarCorrectlyVisible() {
         `when`(repoScreenViewModel.uiState).thenReturn(
-            (mutableStateOf(ReposUIState.Idle))
+            (MutableStateFlow(ReposUIState.Idle))
         )
         `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
             (MutableStateFlow(listOf()))
@@ -48,7 +49,7 @@ class RepoListScreenKtTest {
     @Test
     fun whenScreenIsOnIdleState() {
         `when`(repoScreenViewModel.uiState).thenReturn(
-            (mutableStateOf(ReposUIState.Idle))
+            (MutableStateFlow(ReposUIState.Idle))
         )
         `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
             (MutableStateFlow(listOf()))
@@ -61,7 +62,7 @@ class RepoListScreenKtTest {
     @Test
     fun whenScreenIsOnErrorState(){
         `when`(repoScreenViewModel.uiState).thenReturn(
-            (mutableStateOf(ReposUIState.Error))
+            (MutableStateFlow(ReposUIState.Error))
         )
         `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
             (MutableStateFlow(listOf()))
@@ -75,7 +76,7 @@ class RepoListScreenKtTest {
     @Test
     fun whenScreenIsOnSuccessState(){
         `when`(repoScreenViewModel.uiState).thenReturn(
-            (mutableStateOf(ReposUIState.Success(githubRepos)))
+            (MutableStateFlow(ReposUIState.Success(githubRepos)))
         )
         `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
             (MutableStateFlow(listOf()))
@@ -89,7 +90,7 @@ class RepoListScreenKtTest {
     @Test
     fun whenScreenIsOnLoadingState(){
         `when`(repoScreenViewModel.uiState).thenReturn(
-            (mutableStateOf(ReposUIState.Loading))
+            (MutableStateFlow(ReposUIState.Loading))
         )
         `when`(repoScreenViewModel.expandedCardIdsList).thenReturn(
             (MutableStateFlow(listOf()))
@@ -97,7 +98,9 @@ class RepoListScreenKtTest {
         setup()
         composeTestRule.onNodeWithTag(NETWORK_ERROR).assertDoesNotExist()
         composeTestRule.onNodeWithTag(REPO_LIST).assertDoesNotExist()
-        composeTestRule.onNodeWithTag(LOADING).assertExists()
+        val loaderCount =
+            composeTestRule.onAllNodes(hasTestTag(LOADING)).fetchSemanticsNodes().size
+        assert(loaderCount == 9)
 
 
     }

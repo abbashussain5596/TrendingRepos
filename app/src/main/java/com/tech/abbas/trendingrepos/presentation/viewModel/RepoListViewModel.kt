@@ -1,23 +1,28 @@
 package com.tech.abbas.trendingrepos.presentation.viewModel
 
 import android.app.Application
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.tech.abbas.trendingrepos.domain.entity.GithubRepo
-import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
+import com.tech.abbas.trendingrepos.domain.usecase.IRepoUseCase
+import com.tech.abbas.trendingrepos.domain.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RepoListViewModel @Inject constructor(
-    application: Application
+internal class RepoListViewModel @Inject constructor(
+    application: Application,
+    private val repoUseCase: IRepoUseCase
 ) : AndroidViewModel(application) {
 
-    var uiState = mutableStateOf<ReposUIState>(
+    var _uiState = MutableStateFlow<ReposUIState>(
         ReposUIState.Idle
     )
+    val uiState: StateFlow<ReposUIState> get() = _uiState
 
     private val _expandedCardIdsList = MutableStateFlow(listOf<Int>())
     val expandedCardIdsList: StateFlow<List<Int>> get() = _expandedCardIdsList
@@ -30,6 +35,25 @@ class RepoListViewModel @Inject constructor(
                 list.add(cardId)
             }
         }
+    }
+
+    fun getRepoList() {
+        viewModelScope.launch {
+            repoUseCase.getRepoList().map { repoResult ->
+                when (repoResult) {
+                    is Result.Success -> {
+                        _uiState.value = ReposUIState.Success(repoResult.data)
+                    }
+                    is Result.Loading -> {
+                        _uiState.value = ReposUIState.Loading
+                    }
+                    else -> {}
+                }
+
+            }
+
+        }
+
     }
 
 }
