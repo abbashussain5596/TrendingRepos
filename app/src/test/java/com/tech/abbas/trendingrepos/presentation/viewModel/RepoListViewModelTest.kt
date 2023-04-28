@@ -13,10 +13,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.Before
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class RepoListViewModelTest {
@@ -29,17 +30,19 @@ internal class RepoListViewModelTest {
     @Mock
     lateinit var repoUseCase: IRepoUseCase
 
-    @BeforeEach
+    @Before
     fun setupViewModel() {
+        MockitoAnnotations.openMocks(this)
+        Dispatchers.setMain(StandardTestDispatcher())
+
         repoViewModel = RepoListViewModel(application,repoUseCase)
     }
 
     @Test
-    fun getRepoListSuccess() = runTest {
+    fun verifyRepoListSuccess() = runTest {
 
         val flow = flow {
             emit(Result.Loading)
-            delay(10)
             emit(Result.Success(GithubReposProvider.getGithubRepoList()))
         }
         whenever(
@@ -48,11 +51,9 @@ internal class RepoListViewModelTest {
             flow
         )
 
-        repoViewModel.getRepoList()
-
-        Dispatchers.setMain(StandardTestDispatcher())
-
         repoViewModel.uiState.test {
+            repoViewModel.getRepoList()
+
             Assertions.assertEquals(ReposUIState.Idle, awaitItem())
             Assertions.assertEquals(ReposUIState.Loading, awaitItem())
             Assertions.assertTrue(awaitItem() is ReposUIState.Success)

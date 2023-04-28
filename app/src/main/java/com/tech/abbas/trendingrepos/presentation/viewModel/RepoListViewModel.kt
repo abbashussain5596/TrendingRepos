@@ -9,6 +9,7 @@ import com.tech.abbas.trendingrepos.domain.util.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,13 +40,13 @@ internal class RepoListViewModel @Inject constructor(
 
     fun getRepoList() {
         viewModelScope.launch {
-            repoUseCase.getRepoList().map { repoResult ->
+            repoUseCase.getRepoList().collectLatest { repoResult ->
                 when (repoResult) {
                     is Result.Success -> {
-                        _uiState.value = ReposUIState.Success(repoResult.data)
+                        _uiState.emit(ReposUIState.Success(repoResult.data))
                     }
                     is Result.Loading -> {
-                        _uiState.value = ReposUIState.Loading
+                        _uiState.emit(ReposUIState.Loading)
                     }
                     else -> {}
                 }

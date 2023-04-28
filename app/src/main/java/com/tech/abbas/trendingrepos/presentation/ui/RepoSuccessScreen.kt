@@ -48,7 +48,7 @@ import com.tech.abbas.trendingrepos.presentation.ui.RepoSuccessScreen.USER_REPO
 import com.tech.abbas.trendingrepos.presentation.viewModel.RepoListViewModel
 
 @Composable
-fun RepoSuccessScreen(
+internal fun RepoSuccessScreen(
     modifier: Modifier,
     data: List<GithubRepo>,
     expandedIds: List<Int>,

@@ -24,11 +24,6 @@ class LoadingScreenTest {
     }
 
     @Test
-    fun whenViewStartsShimmerExists() {
-        composeTestRule.onNodeWithTag(LOADING_SHIMMER).assertExists()
-    }
-
-    @Test
     fun whenLoadingStartsAllComponentsShouldExists() {
 
         val shimmerCount =
