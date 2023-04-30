@@ -66,4 +66,26 @@ internal class RepoListViewModelTest {
 
     }
 
+    @Test
+    fun verifyRepoListError() = runTest {
+        val flow = flow {
+            emit(Result.Loading)
+            emit(Result.Error())
+        }
+        whenever(
+            repoUseCase.getRepoList()
+        ).thenReturn(
+            flow
+        )
+
+        repoViewModel.uiState.test {
+            repoViewModel.getRepoList()
+
+            Assertions.assertEquals(ReposUIState.Idle, awaitItem())
+            Assertions.assertEquals(ReposUIState.Loading, awaitItem())
+            Assertions.assertTrue(awaitItem() is ReposUIState.Error)
+
+        }
+    }
+
 }

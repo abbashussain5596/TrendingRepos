@@ -48,7 +48,9 @@ internal class RepoListViewModel @Inject constructor(
                     is Result.Loading -> {
                         _uiState.emit(ReposUIState.Loading)
                     }
-                    else -> {}
+                    is Result.Error -> {
+                        _uiState.emit(ReposUIState.Error)
+                    }
                 }
 
             }
