@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
@@ -56,10 +58,30 @@ internal class RepoUseCaseImplTest {
             awaitComplete()
         }
 
-
         verify(repoRepository).getRepoList()
-
     }
 
+    @Test
+    fun loadRepoListWithError() = runTest {
+
+        val flow = flow {
+            emit(Result.Error(IllegalArgumentException()))
+        }
+        whenever(
+            repoRepository.getRepoList()
+        ).thenReturn(
+            flow
+        )
+
+        repoUseCase.getRepoList().test {
+            val error = awaitItem() as Result.Error
+            assertThat(error.exception, instanceOf(IllegalArgumentException::class.java))
+
+            awaitComplete()
+        }
+        verify(repoRepository).getRepoList()
+
+
+    }
 
 }
