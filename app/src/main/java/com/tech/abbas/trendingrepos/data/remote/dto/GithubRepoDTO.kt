@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class GithubRepoResponseDTO(
     @Json(name = "total_count") val totalCount: Int,
     @Json(name = "incomplete_results") val incompleteResults: Boolean,
-    @Json(name = "items") val items: List<Items>
+    @Json(name = "items") val items: List<Repos>
 )
 
 @JsonClass(generateAdapter = true)
@@ -42,8 +42,7 @@ data class License(
 )
 
 @JsonClass(generateAdapter = true)
-data class Items(
-
+data class Repos(
     @Json(name = "id") val id: Int,
     @Json(name = "node_id") val nodeId: String,
     @Json(name = "name") val name: String,
@@ -124,5 +123,4 @@ data class Items(
     @Json(name = "watchers") val watchers: Int,
     @Json(name = "default_branch") val defaultBranch: String,
     @Json(name = "score") val score: Int
-
 )
