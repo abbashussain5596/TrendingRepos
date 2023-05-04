@@ -28,6 +28,9 @@ internal class RepoListViewModel @Inject constructor(
     private val _expandedCardIdsList = MutableStateFlow(listOf<Int>())
     val expandedCardIdsList: StateFlow<List<Int>> get() = _expandedCardIdsList
 
+    init {
+        getRepoList()
+    }
 
     fun onRepoItemClicked(cardId: Int) {
         _expandedCardIdsList.value = _expandedCardIdsList.value.toMutableList().also { list ->

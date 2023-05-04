@@ -2,6 +2,7 @@ package com.tech.abbas.trendingrepos.presentation.viewModel
 
 import android.app.Application
 import app.cash.turbine.test
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.tech.abbas.trendingrepos.domain.usecase.IRepoUseCase
 import com.tech.abbas.trendingrepos.presentation.mock.GithubReposProvider
@@ -17,6 +18,7 @@ import org.junit.Before
 import org.junit.jupiter.api.Assertions
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -52,7 +54,6 @@ internal class RepoListViewModelTest {
         )
 
         repoViewModel.uiState.test {
-            repoViewModel.getRepoList()
 
             Assertions.assertEquals(ReposUIState.Idle, awaitItem())
             Assertions.assertEquals(ReposUIState.Loading, awaitItem())
@@ -63,6 +64,7 @@ internal class RepoListViewModelTest {
             )
 
         }
+
 
     }
 
@@ -79,7 +81,6 @@ internal class RepoListViewModelTest {
         )
 
         repoViewModel.uiState.test {
-            repoViewModel.getRepoList()
 
             Assertions.assertEquals(ReposUIState.Idle, awaitItem())
             Assertions.assertEquals(ReposUIState.Loading, awaitItem())

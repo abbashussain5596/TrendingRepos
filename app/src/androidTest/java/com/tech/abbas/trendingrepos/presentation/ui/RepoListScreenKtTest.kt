@@ -14,6 +14,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -27,7 +28,7 @@ internal class RepoListScreenKtTest {
 
     private val githubRepos = GithubReposProvider.getGithubRepoList()
 
-    fun setup(){
+    fun setup() {
         composeTestRule.setContent {
             RepoListScreen(repoScreenViewModel)
         }
@@ -60,7 +61,7 @@ internal class RepoListScreenKtTest {
     }
 
     @Test
-    fun whenScreenIsOnErrorState(){
+    fun whenScreenIsOnErrorState() {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (MutableStateFlow(ReposUIState.Error))
         )
@@ -74,7 +75,7 @@ internal class RepoListScreenKtTest {
     }
 
     @Test
-    fun whenScreenIsOnSuccessState(){
+    fun whenScreenIsOnSuccessState() {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (MutableStateFlow(ReposUIState.Success(githubRepos)))
         )
@@ -88,7 +89,7 @@ internal class RepoListScreenKtTest {
     }
 
     @Test
-    fun whenScreenIsOnLoadingState(){
+    fun whenScreenIsOnLoadingState() {
         `when`(repoScreenViewModel.uiState).thenReturn(
             (MutableStateFlow(ReposUIState.Loading))
         )
