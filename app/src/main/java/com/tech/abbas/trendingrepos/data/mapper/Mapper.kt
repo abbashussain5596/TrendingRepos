@@ -5,12 +5,12 @@ import com.tech.abbas.trendingrepos.domain.entity.GithubRepo
 
 internal fun List<Repos>.toGithubRepo() = map {
     GithubRepo(
-        id = it.id,
-        avatarUrl = it.owner.avatarUrl,
-        name = it.owner.login,
-        repoName = it.name,
-        description = it.description,
-        language = it.language,
-        starsCount = it.stargazersCount
+        id = it.id ?: 0,
+        avatarUrl = it.owner.avatarUrl ?: "",
+        name = it.owner.login ?: "",
+        repoName = it.name ?: "",
+        description = it.description ?: "",
+        language = it.language ?: "",
+        starsCount = it.stargazersCount ?: 0
     )
 }
