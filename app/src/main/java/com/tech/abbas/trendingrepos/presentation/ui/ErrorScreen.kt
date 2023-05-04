@@ -24,7 +24,10 @@ import com.tech.abbas.trendingrepos.presentation.ui.ErrorScreen.RETRY_BUTTON
 
 
 @Composable
-fun ErrorScreen(modifier: Modifier) {
+fun ErrorScreen(
+    modifier: Modifier,
+    onRetryButtonClick: () -> Unit
+) {
 
     val errorComposition by rememberLottieComposition(
         LottieCompositionSpec.RawRes(R.raw.error)
@@ -57,15 +60,17 @@ fun ErrorScreen(modifier: Modifier) {
             text = stringResource(id = R.string.error_desc)
         )
         Spacer(modifier = Modifier.height(60.dp))
-        RetryButton()
+        RetryButton(onRetryButtonClick)
     }
 }
 
 @Composable
-fun RetryButton() {
+fun RetryButton(
+    onRetryButtonClick: () -> Unit
+) {
     Button(
         onClick = {
-            //your onclick code
+            onRetryButtonClick()
         },
         modifier = Modifier
             .testTag(RETRY_BUTTON)

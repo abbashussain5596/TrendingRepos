@@ -26,7 +26,8 @@ internal fun RepoListScreen(
         Toolbar()
         when (uiState) {
             is ReposUIState.Error -> {
-                ErrorScreen(Modifier.testTag(NETWORK_ERROR))
+                ErrorScreen(Modifier.testTag(NETWORK_ERROR)
+                ) { viewModel.getRepoList() }
             }
             ReposUIState.Idle -> {}
             ReposUIState.Loading -> {
