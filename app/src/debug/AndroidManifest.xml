@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tech.abbas.trendingrepos">
+
+    <application>
+        <activity
+            android:name=".HiltTestActivity"
+            android:exported="false">
+
+        </activity>
+    </application>
+</manifest>
