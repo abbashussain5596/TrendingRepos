@@ -1,5 +1,5 @@
 
-package com.tech.abbas.trendingrepos.presentation.ui.base.extension
+package com.tech.abbas.trendingrepos.base.extension
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsMatcher

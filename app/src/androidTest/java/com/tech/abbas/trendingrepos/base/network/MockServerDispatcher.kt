@@ -1,7 +1,7 @@
-package com.tech.abbas.trendingrepos.presentation.ui.base.network
+package com.tech.abbas.trendingrepos.base.network
 
 
-import com.tech.abbas.trendingrepos.presentation.ui.base.util.readStringFromFile
+import com.tech.abbas.trendingrepos.base.util.readStringFromFile
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest

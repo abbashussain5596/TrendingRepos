@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Bazaar technologies. All rights reserved.
  */
 
-package com.tech.abbas.trendingrepos.presentation.ui.base.util
+package com.tech.abbas.trendingrepos.base.util
 
 import androidx.test.platform.app.InstrumentationRegistry
 import dagger.hilt.android.testing.HiltTestApplication
