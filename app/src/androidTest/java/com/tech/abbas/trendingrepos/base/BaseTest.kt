@@ -19,7 +19,7 @@ internal open class BaseTest {
     val mockWebServer by lazy { MockWebServer() }
 
     fun startMockServer() {
-        mockWebServer.start(8090)
+        mockWebServer.start(8080)
     }
 
     fun initSuccessMockServerDispatcher() {
